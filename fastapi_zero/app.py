@@ -27,7 +27,7 @@ def read_root():
 
 @app.get(
     '/olamundo',
-    tags=['Endpoint Olá Mundo HTML'],
+    tags=['Olá Mundo HTML'],
     status_code=status.HTTP_200_OK,
     response_class=HTMLResponse,
 )
@@ -60,7 +60,7 @@ def create_user(user: UserSchema):
 
 @app.get(
     '/users/',
-    tags=['Listar Usuários'],
+    tags=['Listar todos os Usuários'],
     status_code=status.HTTP_200_OK,
     response_model=UserList,
 )
@@ -68,7 +68,29 @@ def read_users():
     return {'users': database}
 
 
-@app.put('/users/{user_id}', response_model=UserPublic)
+@app.get(
+    '/users/{user_id}',
+    tags=['Listar um Usuário'],
+    status_code=status.HTTP_200_OK,
+    response_model=UserPublic,
+)
+def read_one_user(user_id: int):
+    if user_id > len(database) or user_id < 1:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail='User not found!'
+        )
+
+    user = next((user for user in database if user.id == user_id), None)
+
+    return user
+
+
+@app.put(
+    '/users/{user_id}',
+    tags=['Alterar dados do Usuário'],
+    status_code=status.HTTP_200_OK,
+    response_model=UserPublic,
+)
 def update_user(user_id: int, user: UserSchema):
     if user_id > len(database) or user_id < 1:
         raise HTTPException(
@@ -81,7 +103,12 @@ def update_user(user_id: int, user: UserSchema):
     return user_with_id
 
 
-@app.delete('/users/{user_id}', response_model=Message)
+@app.delete(
+    '/users/{user_id}',
+    tags=['Exclusão de Usuário'],
+    status_code=status.HTTP_200_OK,
+    response_model=Message,
+)
 def delete_user(user_id: int):
     if user_id > len(database) or user_id < 1:
         raise HTTPException(

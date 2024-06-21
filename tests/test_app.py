@@ -68,7 +68,7 @@ def test_delete_user(client):
     assert response.json() == {'message': 'User deleted'}
 
 
-def test_user_not_found_on_put(client):
+def test_if_user_not_found_on_put(client):
     response = client.put(
         '/users/2',
         json={
@@ -80,6 +80,22 @@ def test_user_not_found_on_put(client):
     assert response.status_code == HTTPStatus.NOT_FOUND
 
 
-def test_user_not_found_on_delete(client):
+def test_if_user_not_found_on_delete(client):
     response = client.delete('/users/2')
+    assert response.status_code == HTTPStatus.NOT_FOUND
+
+
+def test_get_one_user(client):
+    test_create_user(client)
+    response = client.get('/users/1')
+    assert response.status_code == HTTPStatus.OK
+    assert response.json() == {
+        'username': 'alice',
+        'email': 'alice@example.com',
+        'id': 1,
+    }
+
+
+def test_if_user_not_exist(client):
+    response = client.get('/users/2')
     assert response.status_code == HTTPStatus.NOT_FOUND
