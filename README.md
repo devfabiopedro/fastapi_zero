@@ -47,52 +47,10 @@ poetry install
 ```
 
 ## Uso
-Iniciar o servidor ou executar tarefas com Taskipy
-
-```
-abra o seu arquivo pyproject.toml
-```
-copie e cole estas chaves no seu arquivo **pyproject.toml**
-
-```
-[tool.ruff]
-line-length = 79
-extend-exclude = ['migrations']
-
-[tool.ruff.lint]
-preview = true
-select = ['I', 'F', 'E', 'W', 'PL', 'PT']
-
-[tool.ruff.format]
-preview = true
-quote-style = 'single'
-
-[tool.pytest.ini_options]
-pythonpath = "."
-addopts = '-p no:warnings'
-
-[tool.taskipy.tasks]
-run = 'fastapi dev fastapi_zero/app.py'
-lint = 'ruff check . && ruff check . --diff'
-format = 'ruff check . --fix && ruff format .'
-pre_test = 'task lint'
-test = 'pytest -s -x --cov=fastapi_zero -vv'
-post_test = 'coverage html'
-```
-Estas chaves deve ficar **acima** da chave abaixo:
-```
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-```
-
-Salve as alterações do seu arquivo **pyproject.toml**
-
-A partir do seu prompt de comandos ou console de comandos do seu editor você pode executar o comando:
-- **task --list** (Lista todos os comandos que você criou)
-- **task run** (Executa o projeto)
-- **task lint** (O Ruff faz a checagem de Lint e exibe os erros)     
+A partir do seu prompt de comando ou terminal você pode executar o comando:
+#### **task --list** (Lista todos os comandos)  
+- **task run** (Inicia o servidor local Uvicorn e executa o projeto)
+- **task lint** (O Ruff faz a checagem de Lint e exibe os erros)
 - **task format** (O Ruff faz a formatação do seu documento adequadamente)
-- **task pre_test** (Faz uma verificação de sintaxe)
-- **task test** (Executa os testes unitários escritos com pytest)
+- **task test** (Executa os testes unitários escritos com Pytest)
 - **task post_test** (Gera o arquivo coverage html e exibe no navegador a sua cobertura de testes)
