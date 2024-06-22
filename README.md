@@ -53,4 +53,4 @@ A partir do seu prompt de comando ou terminal você pode executar o comando:
 - **task lint** (O Ruff faz a checagem de Lint e exibe os erros)
 - **task format** (O Ruff faz a formatação do seu documento adequadamente)
 - **task test** (Executa os testes unitários escritos com Pytest)
-- **task post_test** (Gera o arquivo coverage html e exibe no navegador a sua cobertura de testes)
+- **task post-test** (Gera o arquivo coverage html e exibe no navegador a sua cobertura de testes)

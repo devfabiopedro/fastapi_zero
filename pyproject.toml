@@ -41,7 +41,7 @@ run = 'fastapi dev fastapi_zero/app.py'
 lint = 'ruff check . && ruff check . --diff'
 format = 'ruff check . --fix && ruff format .'
 test = 'pytest -s -x --cov=fastapi_zero -vv'
-coverage-report = 'coverage html && python coverage_report.py'
+post-test = 'coverage html && python coverage_report.py'
 
 [build-system]
 requires = ["poetry-core"]
