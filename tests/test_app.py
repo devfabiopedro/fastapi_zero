@@ -80,7 +80,7 @@ def test_if_user_not_found_on_put(client):
     assert response.status_code == HTTPStatus.NOT_FOUND
 
 
-def test_if_user_not_found_on_delete(client):
+def test_if_user_not_found_on_delete_404(client):
     response = client.delete('/users/2')
     assert response.status_code == HTTPStatus.NOT_FOUND
 
@@ -96,6 +96,6 @@ def test_get_one_user(client):
     }
 
 
-def test_if_user_not_exist(client):
+def test_if_user_not_exist_404(client):
     response = client.get('/users/2')
     assert response.status_code == HTTPStatus.NOT_FOUND
