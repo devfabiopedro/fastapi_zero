@@ -68,7 +68,7 @@ def test_delete_user(client):
     assert response.json() == {'message': 'User deleted'}
 
 
-def test_if_user_not_found_on_put(client):
+def test_if_user_not_found_on_put_404(client):
     response = client.put(
         '/users/2',
         json={
