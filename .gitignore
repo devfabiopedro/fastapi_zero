@@ -6,9 +6,7 @@
 .vscode
 .coverage
 .coveragerc
-alembic.ini
 .ruff_cache/
 .pytest_cache/
-migrations
 __pycache__
 htmlcov
