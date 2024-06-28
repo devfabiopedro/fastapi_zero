@@ -99,21 +99,21 @@ def test_if_user_not_exist_404(client, user):
 
 def test_create_new_user_verify_if_username_exists(client, user):
     new_user_data = {
-        "username": user.username,
-        "email": "newteste@test.com",
-        "password": "newpassword"
+        'username': user.username,
+        'email': 'newteste@test.com',
+        'password': 'newpassword',
     }
-    response = client.post("/users", json=new_user_data)
+    response = client.post('/users', json=new_user_data)
     assert response.status_code == HTTPStatus.BAD_REQUEST
-    assert response.json() == {"detail": "Username already exists"}
+    assert response.json() == {'detail': 'Username already exists'}
 
 
 def test_create_new_user__verify_if_email_exists(client, user):
     new_user_data = {
-        "username": "NewTeste",
-        "email": user.email,
-        "password": "newpassword"
+        'username': 'NewTeste',
+        'email': user.email,
+        'password': 'newpassword',
     }
-    response = client.post("/users", json=new_user_data)
+    response = client.post('/users', json=new_user_data)
     assert response.status_code == HTTPStatus.BAD_REQUEST
-    assert response.json() == {"detail": "Email already exists"}
+    assert response.json() == {'detail': 'Email already exists'}
