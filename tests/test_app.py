@@ -1,6 +1,16 @@
 from http import HTTPStatus
 
+import jwt
+import pytest
+from fastapi import HTTPException
+
 from fastapi_zero.schemas import UserPublic
+from fastapi_zero.security import (
+    ALGORITHM,
+    SECRET_KEY,
+    Session,
+    get_current_user,
+)
 
 
 def test_read_root_deve_retornar_ok_e_ola_mundo(client):
@@ -44,9 +54,10 @@ def test_read_users_with_users(client, user):
     assert response.json() == {'users': [user_schema]}
 
 
-def test_update_user(client, user):
+def test_update_user(client, user, token):
     response = client.put(
-        '/users/1',
+        f'/users/{user.id}',
+        headers={'Authorization': f'Bearer {token}'},
         json={
             'username': 'bob',
             'email': 'bob@example.com',
@@ -57,27 +68,30 @@ def test_update_user(client, user):
     assert response.json() == {
         'username': 'bob',
         'email': 'bob@example.com',
-        'id': 1,
+        'id': user.id,
     }
 
 
-def test_delete_user(client, user):
-    response = client.delete('/users/1')
+def test_delete_user(client, user, token):
+    response = client.delete(
+        f'/users/{user.id}', headers={'Authorization': f'Bearer {token}'}
+    )
 
     assert response.status_code == HTTPStatus.OK
     assert response.json() == {'message': 'User deleted'}
 
 
-def test_if_user_not_found_on_put_404(client, user):
+def test_if_user_not_found_on_put_401(client, token):
     response = client.put(
-        '/users/2',
+        '/users/0',
+        headers={'Authorization': f'Bearer {token}'},
         json={
             'username': 'john',
             'email': 'john@example.com',
             'password': '2mynewpassword',
         },
     )
-    assert response.status_code == HTTPStatus.NOT_FOUND
+    assert response.status_code == HTTPStatus.BAD_REQUEST
 
 
 def test_get_one_user(client, user):
@@ -87,9 +101,11 @@ def test_get_one_user(client, user):
     assert response.json() == user_schema
 
 
-def test_if_user_not_found_on_delete_404(client, user):
-    response = client.delete('/users/2')
-    assert response.status_code == HTTPStatus.NOT_FOUND
+def test_if_user_not_found_on_delete_401(client, token):
+    response = client.delete(
+        '/users/0', headers={'Authorization': f'Bearer {token}'}
+    )
+    assert response.status_code == HTTPStatus.BAD_REQUEST
 
 
 def test_if_user_not_exist_404(client, user):
@@ -108,7 +124,7 @@ def test_create_new_user_verify_if_username_exists(client, user):
     assert response.json() == {'detail': 'Username already exists'}
 
 
-def test_create_new_user__verify_if_email_exists(client, user):
+def test_create_new_user_verify_if_email_exists(client, user):
     new_user_data = {
         'username': 'NewTeste',
         'email': user.email,
@@ -117,3 +133,45 @@ def test_create_new_user__verify_if_email_exists(client, user):
     response = client.post('/users', json=new_user_data)
     assert response.status_code == HTTPStatus.BAD_REQUEST
     assert response.json() == {'detail': 'Email already exists'}
+
+
+@pytest.mark.asyncio()
+async def test_user_not_found_in_db(session: Session):
+    token = jwt.encode({'sub': 'Carmem'}, SECRET_KEY, algorithm=ALGORITHM)
+
+    with pytest.raises(HTTPException) as excinfo:
+        await get_current_user(session=session, token=token)
+
+    assert excinfo.value.status_code == HTTPStatus.UNAUTHORIZED
+    assert excinfo.value.detail == 'Could not validate credentials'
+
+
+@pytest.mark.asyncio()
+async def test_missing_sub_in_token(session: Session):
+    token = jwt.encode({}, SECRET_KEY, algorithm=ALGORITHM)  # Token sem sub
+
+    with pytest.raises(HTTPException) as excinfo:
+        await get_current_user(session=session, token=token)
+
+    assert excinfo.value.status_code == HTTPStatus.UNAUTHORIZED
+    assert excinfo.value.detail == 'Could not validate credentials'
+
+
+def test_when_generate_token_if_incorrect_email(client, user):
+    wrong_email = 'carmen@email.com'
+
+    response = client.post(
+        '/token', data={'username': wrong_email, 'password': user.password}
+    )
+    assert response.status_code == HTTPStatus.BAD_REQUEST
+    assert response.json() == {'detail': 'Incorrect email or password'}
+
+
+def test_when_generate_token_if_incorrect_password(client, user):
+    wrong_pass = 'passwrong'
+
+    response = client.post(
+        '/token', data={'username': user.email, 'password': wrong_pass}
+    )
+    assert response.status_code == HTTPStatus.BAD_REQUEST
+    assert response.json() == {'detail': 'Incorrect email or password'}
