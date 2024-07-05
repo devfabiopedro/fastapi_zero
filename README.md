@@ -5,13 +5,13 @@
 Projeto do curso de FastAPI do [Eduardo Mendes @dunossauro](https://github.com/dunossauro/fastapi-do-zero) do canal [Live de Python](https://www.youtube.com/@Dunossauro).
 
 
-## Descrição do Projeto
+## 📘 Descrição do Projeto
 
 Etapas de criação de uma API REST utilizando o FastAPI.  
 Será feito a implementação e publicação do projeto final.  
 O objetivo é aplicar todos os conceitos aprendidos ao longo do curso para desenvolver uma API completa e funcional utilizando FastAPI.
 
-## Este projeto está usando:
+## 🚀 Este projeto está usando:
 
 #### Dependências de Projeto:
 - Python 3.11 ou superior **(recomendação do autor)**
@@ -24,31 +24,31 @@ O objetivo é aplicar todos os conceitos aprendidos ao longo do curso para desen
 - [Pytest 8.2.2](https://pypi.org/project/pytest/) (Um  Framework para criar testes unitários.)
 - [Pytest-Cov 5.0.0](https://pypi.org/project/pytest-cov/) (Um plugin para produzir relatórios de cobertura de testes unitários)
 
-#### Opcional Dependência de Desenvolvimento:
+#### ⚠️ Opcional Dependência de Desenvolvimento:
 - [ignr 2.2](https://pypi.org/project/ignr/) (Plugin para gerar um arquivo .gitignore baseado na linguagem que voce definir.)
 
-## Instalação
+## 🖥️ Instalação
 
-1. Clone o repositório:
+1. Clone o repositório 🔗:
 
 ```bash
 git clone https://github.com/devfabiopedro/fastapi_zero.git
 cd fastapi_zero
 ```
 
-2. Crie um ambiente virtual com o Poetry:
+2. Crie um ambiente virtual com o Poetry 🏡:
 
 ```bash
 poetry shell
 ```
 
-3. Instale as dependências do projeto:
+3. Instale as dependências do projeto 💾:
 
 ```bash
 poetry install
 ```
 
-## Uso
+## 🛠️ Uso
 A partir do seu prompt de comando ou terminal você pode executar o comando:
 #### **task --list** (Lista todos os comandos)  
 - **task run** (Inicia o servidor local Uvicorn e executa o projeto)
