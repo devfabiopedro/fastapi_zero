@@ -1,6 +1,6 @@
-<img src="https://mabittar.github.io/assets/img/fastapi.png">
+<img src="https://mabittar.github.io/assets/img/fastapi.png" alt="FastAPI Logo">
 
-# [FastAPI do zero](https://fastapidozero.dunossauro.com/) com @Dunossauro
+## [FastAPI do zero](https://fastapidozero.dunossauro.com/) com @Dunossauro
 
 Projeto do curso de FastAPI do [Eduardo Mendes @dunossauro](https://github.com/dunossauro/fastapi-do-zero) do canal [Live de Python](https://www.youtube.com/@Dunossauro).
 
