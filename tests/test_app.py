@@ -5,12 +5,7 @@ import pytest
 from fastapi import HTTPException
 
 from fastapi_zero.schemas import UserPublic
-from fastapi_zero.security import (
-    ALGORITHM,
-    SECRET_KEY,
-    Session,
-    get_current_user,
-)
+from fastapi_zero.security import Session, get_current_user, settings
 
 
 def test_read_root_deve_retornar_ok_e_ola_mundo(client):
@@ -45,13 +40,13 @@ def test_create_user(client):
 def test_read_users(client):
     response = client.get('/users/')
     assert response.status_code == HTTPStatus.OK
-    assert response.json() == {'users': []}
+    assert response.json() == {'users': [], 'total': 0}
 
 
 def test_read_users_with_users(client, user):
     user_schema = UserPublic.model_validate(user).model_dump()
     response = client.get('/users/')
-    assert response.json() == {'users': [user_schema]}
+    assert response.json() == {'users': [user_schema], 'total':1}
 
 
 def test_update_user(client, user, token):
@@ -81,7 +76,7 @@ def test_delete_user(client, user, token):
     assert response.json() == {'message': 'User deleted'}
 
 
-def test_if_user_not_found_on_put_401(client, token):
+def test_if_user_not_found_on_put_403(client, token):
     response = client.put(
         '/users/0',
         headers={'Authorization': f'Bearer {token}'},
@@ -91,7 +86,7 @@ def test_if_user_not_found_on_put_401(client, token):
             'password': '2mynewpassword',
         },
     )
-    assert response.status_code == HTTPStatus.BAD_REQUEST
+    assert response.status_code == HTTPStatus.FORBIDDEN
 
 
 def test_get_one_user(client, user):
@@ -101,11 +96,11 @@ def test_get_one_user(client, user):
     assert response.json() == user_schema
 
 
-def test_if_user_not_found_on_delete_401(client, token):
+def test_if_user_not_found_on_delete_403(client, token):
     response = client.delete(
         '/users/0', headers={'Authorization': f'Bearer {token}'}
     )
-    assert response.status_code == HTTPStatus.BAD_REQUEST
+    assert response.status_code == HTTPStatus.FORBIDDEN
 
 
 def test_if_user_not_exist_404(client, user):
@@ -120,7 +115,7 @@ def test_create_new_user_verify_if_username_exists(client, user):
         'password': 'newpassword',
     }
     response = client.post('/users', json=new_user_data)
-    assert response.status_code == HTTPStatus.BAD_REQUEST
+    assert response.status_code == HTTPStatus.FORBIDDEN
     assert response.json() == {'detail': 'Username already exists'}
 
 
@@ -131,13 +126,15 @@ def test_create_new_user_verify_if_email_exists(client, user):
         'password': 'newpassword',
     }
     response = client.post('/users', json=new_user_data)
-    assert response.status_code == HTTPStatus.BAD_REQUEST
+    assert response.status_code == HTTPStatus.FORBIDDEN
     assert response.json() == {'detail': 'Email already exists'}
 
 
 @pytest.mark.asyncio()
 async def test_user_not_found_in_db(session: Session):
-    token = jwt.encode({'sub': 'Carmem'}, SECRET_KEY, algorithm=ALGORITHM)
+    token = jwt.encode(
+        {'sub': 'Carmem'}, settings.SECRET_KEY, algorithm=settings.ALGORITHM
+    )
 
     with pytest.raises(HTTPException) as excinfo:
         await get_current_user(session=session, token=token)
@@ -148,7 +145,9 @@ async def test_user_not_found_in_db(session: Session):
 
 @pytest.mark.asyncio()
 async def test_missing_sub_in_token(session: Session):
-    token = jwt.encode({}, SECRET_KEY, algorithm=ALGORITHM)  # Token sem sub
+    token = jwt.encode(
+        {}, settings.SECRET_KEY, algorithm=settings.ALGORITHM
+    )  # Token sem sub
 
     with pytest.raises(HTTPException) as excinfo:
         await get_current_user(session=session, token=token)
@@ -161,9 +160,10 @@ def test_when_generate_token_if_incorrect_email(client, user):
     wrong_email = 'carmen@email.com'
 
     response = client.post(
-        '/token', data={'username': wrong_email, 'password': user.password}
+        '/auth/token',
+        data={'username': wrong_email, 'password': user.password},
     )
-    assert response.status_code == HTTPStatus.BAD_REQUEST
+    assert response.status_code == HTTPStatus.FORBIDDEN
     assert response.json() == {'detail': 'Incorrect email or password'}
 
 
@@ -171,7 +171,13 @@ def test_when_generate_token_if_incorrect_password(client, user):
     wrong_pass = 'passwrong'
 
     response = client.post(
-        '/token', data={'username': user.email, 'password': wrong_pass}
+        '/auth/token', data={'username': user.email, 'password': wrong_pass}
     )
-    assert response.status_code == HTTPStatus.BAD_REQUEST
+    assert response.status_code == HTTPStatus.FORBIDDEN
     assert response.json() == {'detail': 'Incorrect email or password'}
+
+
+def test_read_users_empty(client):
+    response = client.get("/users/")
+    assert response.status_code == 200
+    assert response.json() == {'users': [], 'total': 0}

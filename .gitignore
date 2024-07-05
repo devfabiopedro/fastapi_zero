@@ -8,6 +8,7 @@
 .coveragerc
 .ruff_cache/
 .pytest_cache/
+.TODO
 __pycache__
 htmlcov
 issue.md

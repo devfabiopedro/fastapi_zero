@@ -24,6 +24,7 @@ class UserPublic(BaseModel):
 
 class UserList(BaseModel):
     users: list[UserPublic]
+    total: int
 
 
 class Token(BaseModel):
