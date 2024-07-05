@@ -1,4 +1,4 @@
-<img src="https://mabittar.github.io/assets/img/fastapi.png" alt="FastAPI Logo">
+<img src="https://i.imgur.com/4tuAMcX.png" alt="FastAPI Logo">
 
 # [FastAPI do zero](https://fastapidozero.dunossauro.com/) com @Dunossauro
 
