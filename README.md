@@ -1,8 +1,10 @@
-# [FastAPI do zero](https://fastapidozero.dunossauro.com/)
+<img src="https://mabittar.github.io/assets/img/fastapi.png"></img>
+
+# [FastAPI do zero](https://fastapidozero.dunossauro.com/) com @Dunossauro
 
 Projeto do curso de FastAPI do [Eduardo Mendes @dunossauro](https://github.com/dunossauro/fastapi-do-zero) do canal [Live de Python](https://www.youtube.com/@Dunossauro).
 
- 
+
 ## Descrição do Projeto
 
 Etapas de criação de uma API REST utilizando o FastAPI.  
