@@ -17,7 +17,7 @@ router = APIRouter(prefix='/auth', tags=['Auth'])
     responses={
         403: {
             'model': ErrorDetail,
-            'description': 'Incorrect email or password',
+            'description': 'Forbidden',
         }
     },
 )
@@ -30,7 +30,7 @@ def login_for_access_token(
     if not user:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail='Incorrect email or password',
+            detail='Forbidden',
         )
 
     if not verify_password(form_data.password, user.password):
