@@ -15,17 +15,20 @@ O objetivo é aplicar todos os conceitos aprendidos ao longo do curso para desen
 
 #### Dependências de Projeto:
 - Python 3.11 ou superior **(recomendação do autor)**
-- [Fastapi 0.111.0](https://pypi.org/project/fastapi/) (Web Framework de alto desempenho para construir API's)
+- <a href="https://pypi.org/project/fastapi/" target="_blank">Fastapi 0.111.0</a> (Web Framework de alto desempenho para construir API's)
+
 
 #### Dependências de Desenvolvimento:
-- [Poetry 1.8.3](https://python-poetry.org/) (Gerenciador de pacotes do Python)
-- [Taskipy 1.13.0](https://pypi.org/project/taskipy/) (Executor de tarefas para projetos python)
-- [Ruff 0.4.9](https://pypi.org/project/ruff/) (Um linter Python e formatador de código extremamente rápido, escrito em Rust.)
-- [Pytest 8.2.2](https://pypi.org/project/pytest/) (Criar testes simples e poderosos com Python)
-- [Pytest-Cov 5.0.0](https://pypi.org/project/pytest-cov/) (Um plugin para produzir relatórios de cobertura de testes)
+- <a href="https://python-poetry.org/" target="_blank">Poetry 1.8.3</a> (Gerenciador de pacotes do Python)
+
+- <a href="https://pypi.org/project/taskipy/" target="_blank">Taskipy 1.13.0</a> (Executor de tarefas para projetos python)
+- <a href="https://pypi.org/project/ruff/" target="_blank">Ruff 0.4.9</a> (Um linter Python e formatador de código extremamente rápido, escrito em Rust.)
+- <a href="https://pypi.org/project/pytest/" target="_blank">Pytest 8.2.2</a> (Criar testes simples e poderosos com Python)
+- <a href="https://pypi.org/project/pytest-cov/" target="_blank">Pytest-Cov 5.0.0</a> (Um plugin para produzir relatórios de cobertura de testes)
+- <a href="https://pypi.org/project/fastapi/" target="_blank">Fastapi 0.111.0</a> (Web Framework de alto desempenho para construir API's)
 
 #### ⚠️ Opcional Dependência de Desenvolvimento:
-- [ignr 2.2](https://pypi.org/project/ignr/) (Plugin para gerar um arquivo .gitignore baseado na linguagem que voce definir.)
+- <a href="https://pypi.org/project/ignr/" target="_blank">ignr 2.2</a> (Plugin para gerar um arquivo .gitignore baseado na linguagem que você definir.)
 
 ## 🖥️ Instalação
 
