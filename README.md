@@ -15,14 +15,14 @@ O objetivo é aplicar todos os conceitos aprendidos ao longo do curso para desen
 
 #### Dependências de Projeto:
 - Python 3.11 ou superior **(recomendação do autor)**
-- [Fastapi 0.111.0](https://pypi.org/project/fastapi/) (Web Framework para construir API's)
+- [Fastapi 0.111.0](https://pypi.org/project/fastapi/) (Web Framework de alto desempenho para construir API's)
 
 #### Dependências de Desenvolvimento:
 - [Poetry 1.8.3](https://python-poetry.org/) (Gerenciador de pacotes do Python)
-- [Taskipy 1.13.0](https://pypi.org/project/taskipy/) (Um task runner para linhas de comandos Python)
-- [Ruff 0.4.9](https://pypi.org/project/taskipy/) (Um task runner para linhas de comandos Python)
-- [Pytest 8.2.2](https://pypi.org/project/pytest/) (Um  Framework para criar testes unitários.)
-- [Pytest-Cov 5.0.0](https://pypi.org/project/pytest-cov/) (Um plugin para produzir relatórios de cobertura de testes unitários)
+- [Taskipy 1.13.0](https://pypi.org/project/taskipy/) (Executor de tarefas para projetos python)
+- [Ruff 0.4.9](https://pypi.org/project/ruff/) (Um linter Python e formatador de código extremamente rápido, escrito em Rust.)
+- [Pytest 8.2.2](https://pypi.org/project/pytest/) (Criar testes simples e poderosos com Python)
+- [Pytest-Cov 5.0.0](https://pypi.org/project/pytest-cov/) (Um plugin para produzir relatórios de cobertura de testes)
 
 #### ⚠️ Opcional Dependência de Desenvolvimento:
 - [ignr 2.2](https://pypi.org/project/ignr/) (Plugin para gerar um arquivo .gitignore baseado na linguagem que voce definir.)
