@@ -23,6 +23,9 @@ O objetivo é aplicar todos os conceitos aprendidos ao longo do curso para desen
 - [Ruff 0.4.9](https://pypi.org/project/ruff/) (Um linter Python e formatador de código extremamente rápido, escrito em Rust.)
 - [Pytest 8.2.2](https://pypi.org/project/pytest/) (Criar testes simples e poderosos com Python)
 - [Pytest-Cov 5.0.0](https://pypi.org/project/pytest-cov/) (Um plugin para produzir relatórios de cobertura de testes)
+- [Factory-boy 3.3.0](https://pypi.org/project/factory-boy/) (Uma biblioteca que permite criar objetos de modelo de teste de forma rápida e fácil.)
+- [Freezegun 1.5.1](https://pypi.org/project/freezegun/) (Um biblioteca que permite "congelar" o tempo em um ponto específico ou avançá-lo conforme necessário durante os testes)
+
 
 #### ⚠️ Opcional Dependência de Desenvolvimento:
 - [ignr 2.2](https://pypi.org/project/ignr/) (Plugin para gerar um arquivo .gitignore baseado na linguagem que voce definir.)
