@@ -25,14 +25,12 @@ def test_create_todo(client, token):
             'state': 'draft',
         },
     )
-
-    response_data = response.json()
-
-    assert response_data['title'] == 'Test todo'
-    assert response_data['description'] == 'Test todo description'
-    assert response_data['state'] == 'draft'
-    assert 'created_at' in response_data
-    assert 'updated_at' in response_data
+    assert response.json() == {
+        'id': 1,
+        'title': 'Test todo',
+        'description': 'Test todo description',
+        'state': 'draft',
+    }
 
 
 def test_list_todos_should_return_5_todos(session, client, user, token):
@@ -44,6 +42,7 @@ def test_list_todos_should_return_5_todos(session, client, user, token):
         '/todos/',
         headers={'Authorization': f'Bearer {token}'},
     )
+
     assert len(response.json()['todos']) == expected_todos
 
 
