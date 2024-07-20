@@ -6,8 +6,12 @@ from fastapi import HTTPException
 from freezegun import freeze_time
 from jwt import decode
 
-from fastapi_zero.security import (Session, create_access_token,
-                                   get_current_user, settings)
+from fastapi_zero.security import (
+    Session,
+    create_access_token,
+    get_current_user,
+    settings,
+)
 
 
 # (security) LN: 61

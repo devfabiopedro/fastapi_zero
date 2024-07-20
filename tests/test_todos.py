@@ -22,7 +22,7 @@ def test_create_todo(client, token):
         json={
             'title': 'Test todo',
             'description': 'Test todo description',
-            'state': 'draft'
+            'state': 'draft',
         },
     )
 
