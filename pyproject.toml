@@ -16,6 +16,7 @@ pwdlib = {extras = ["argon2"], version = "^0.2.0"}
 tzdata = "^2024.1"
 python-multipart = "^0.0.9"
 pytest-asyncio = "^0.23.7"
+psycopg = {extras = ["binary"], version = "^3.2.1"}
 
 
 [tool.poetry.group.dev.dependencies] #Dependências de Desenvolvimento
@@ -26,6 +27,7 @@ taskipy = "^1.12.2"
 ignr = "^2.2"
 factory-boy = "^3.3.0"
 freezegun = "^1.5.1"
+testcontainers = "^4.7.2"
 
 [tool.ruff]
 line-length = 79
