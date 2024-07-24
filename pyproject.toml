@@ -28,6 +28,7 @@ ignr = "^2.2"
 factory-boy = "^3.3.0"
 freezegun = "^1.5.1"
 testcontainers = "^4.7.2"
+pytest-mock = "^3.14.0"
 
 [tool.ruff]
 line-length = 79
