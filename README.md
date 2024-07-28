@@ -19,15 +19,21 @@ O objetivo é aplicar todos os conceitos aprendidos ao longo do curso para desen
 #### Dependências de Projeto:
 - Python 3.11 ou superior **(recomendação do autor)**
 - [Fastapi 0.111.0](https://pypi.org/project/fastapi/) (Web Framework de alto desempenho para construir API's)
+- [Poetry 1.8.3](https://python-poetry.org/) (Gerenciador de pacotes do Python)
+- [SQLAlchemy 2.0.31](https://pypi.org/project/SQLAlchemy/) (Um Toolkit de ORM)
+- [Alembic 1.13.1](https://pypi.org/project/alembic/) (Ferramenta de migração de banco de dados)
+- [PyJWT 2.8.0](https://pypi.org/project/PyJWT/) (Autenticador entre duas partes, por meio de um token assinado que segue o padrão(RFC-7519))
+- [Psycopg 3.2.1](https://pypi.org/project/psycopg/) (Adaptador de PostgreSQL para Python)
 
 #### Dependências de Desenvolvimento:
-- [Poetry 1.8.3](https://python-poetry.org/) (Gerenciador de pacotes do Python)
 - [Taskipy 1.13.0](https://pypi.org/project/taskipy/) (Executor de tarefas para projetos python)
 - [Ruff 0.4.9](https://pypi.org/project/ruff/) (Um linter Python e formatador de código extremamente rápido, escrito em Rust.)
 - [Pytest 8.2.2](https://pypi.org/project/pytest/) (Criar testes simples e poderosos com Python)
 - [Pytest-Cov 5.0.0](https://pypi.org/project/pytest-cov/) (Um plugin para produzir relatórios de cobertura de testes)
+- [Pytest-mock 3.14.0](https://pypi.org/project/pytest-mock/) (Fornece um mocker fixture que é um thin-wrapper em torno da API de patch fornecida pelo pacote mock)
 - [Factory-boy 3.3.0](https://pypi.org/project/factory-boy/) (Uma biblioteca que permite criar objetos de modelo de teste de forma rápida e fácil.)
 - [Freezegun 1.5.1](https://pypi.org/project/freezegun/) (Um biblioteca que permite "congelar" o tempo em um ponto específico ou avançá-lo conforme necessário durante os testes)
+- [Testcontainers 4.7.2](https://pypi.org/project/testcontainers/) (Facilita o uso de contêineres Docker para testes funcionais e de integração)
 
 
 #### ⚠️ Opcional Dependência de Desenvolvimento:
