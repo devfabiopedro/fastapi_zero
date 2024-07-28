@@ -5,6 +5,9 @@
 Projeto do curso de FastAPI do [Eduardo Mendes @dunossauro](https://github.com/dunossauro/fastapi-do-zero) do canal [Live de Python](https://www.youtube.com/@Dunossauro).
 
 
+## 🌎 O projeto pode ser visto funcionando neste endereço
+## [https://fastapi-zero.fly.dev/](https://fastapi-zero.fly.dev/)
+
 ## 📘 Descrição do Projeto
 
 Etapas de criação de uma API REST utilizando o FastAPI.  
