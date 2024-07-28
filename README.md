@@ -1,6 +1,6 @@
 <img src="https://i.imgur.com/4tuAMcX.png" alt="FastAPI Logo">
 
-# [FastAPI do zero](https://fastapidozero.dunossauro.com/) com @Dunossauro
+## [FastAPI do zero](https://fastapidozero.dunossauro.com/) com @Dunossauro
 
 Projeto do curso de FastAPI do [Eduardo Mendes @dunossauro](https://github.com/dunossauro/fastapi-do-zero) do canal [Live de Python](https://www.youtube.com/@Dunossauro).
 
