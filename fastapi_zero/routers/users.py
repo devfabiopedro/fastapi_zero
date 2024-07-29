@@ -6,13 +6,8 @@ from sqlalchemy.orm import Session
 
 from fastapi_zero.database import get_session
 from fastapi_zero.models import User
-from fastapi_zero.schemas import (
-    ErrorDetail,
-    Message,
-    UserList,
-    UserPublic,
-    UserSchema,
-)
+from fastapi_zero.schemas import (ErrorDetail, Message, UserList, UserPublic,
+                                  UserSchema)
 from fastapi_zero.security import get_current_user, get_password_hash
 
 router = APIRouter(prefix='/users', tags=['Users'])
