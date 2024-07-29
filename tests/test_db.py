@@ -30,6 +30,7 @@ def test_create_todo(session, user: User):
 
     assert todo in user.todos
 
+
 # (database) LN:10,11
 def test_get_session(session, engine, mocker):
     mocker.patch('fastapi_zero.database.engine', engine)

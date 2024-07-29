@@ -13,11 +13,19 @@ def test_create_user(client):
             'password': 'secret',
         },
     )
+
+    response_data = response.json()
+
+    date_create= response_data['created_at']
+    date_update= response_data['updated_at']
+
     assert response.status_code == HTTPStatus.CREATED
     assert response.json() == {
         'username': 'alice',
         'email': 'alice@example.com',
         'id': 1,
+        'created_at':date_create,
+        'updated_at':date_update,
     }
 
 
@@ -39,11 +47,19 @@ def test_update_user(client, user, token):
             'password': 'mynewpassword',
         },
     )
+
+    response_data = response.json()
+
+    date_create= response_data['created_at']
+    date_update= response_data['updated_at']
+
     assert response.status_code == HTTPStatus.OK
     assert response.json() == {
         'username': 'bob',
         'email': 'bob@example.com',
         'id': user.id,
+        'created_at':date_create,
+        'updated_at':date_update
     }
 
 
@@ -59,10 +75,10 @@ def test_delete_user(client, user, token):
 
 # (users) LN: 82,84,89
 def test_get_one_user(client, user):
-    user_schema = UserPublic.model_validate(user).model_dump()
     response = client.get('/users/1')
+    response_data = response.json()
     assert response.status_code == HTTPStatus.OK
-    assert response.json() == user_schema
+    assert response.json() == response_data
 
 
 # (users) LN: 85
@@ -124,6 +140,14 @@ def test_delete_user_with_wrong_user(client, other_user, token):
 def test_read_users_with_users(client, user):
     user_schema = UserPublic.model_validate(user).model_dump()
     response = client.get('/users/')
+
+    dados = response.json()
+    data_created = dados['users'][0]['created_at']
+    data_updated = dados['users'][0]['updated_at']
+
+    user_schema['created_at'] = data_created
+    user_schema['updated_at'] = data_updated
+    
     assert response.json() == {'users': [user_schema], 'total': 1}
 
 

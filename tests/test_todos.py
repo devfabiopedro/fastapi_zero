@@ -1,3 +1,4 @@
+from datetime import UTC, datetime
 from http import HTTPStatus
 
 import factory.fuzzy
@@ -25,12 +26,16 @@ def test_create_todo(client, token):
             'state': 'draft',
         },
     )
-    assert response.json() == {
-        'id': 1,
-        'title': 'Test todo',
-        'description': 'Test todo description',
-        'state': 'draft',
-    }
+    response_data = response.json()
+
+    created_at = response_data['created_at']
+    now = datetime.now(UTC).strftime('%Y-%m-%dT%H:%M:%S')
+
+    assert response_data['id'] == 1
+    assert response_data['title'] == 'Test todo'
+    assert response_data['description'] == 'Test todo description'
+    assert response_data['state'] == 'draft'
+    assert created_at.startswith(now)
 
 
 def test_list_todos_should_return_5_todos(session, client, user, token):
