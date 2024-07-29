@@ -10,8 +10,8 @@ services:
     ports:
       - "5432:5432"
 
-  fastapizero_app:
-    image: fastapizero_app
+  fastapizero_img:
+    image: fastapizero_img
     entrypoint: ./entrypoint.sh
     build: .
     ports:

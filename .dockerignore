@@ -1,8 +1,8 @@
 # flyctl launch added from .gitignore
-**\﻿*.db
+**\*.db
+**\*.md
 **\*.pyc
 **\.coverage
-**\.env
 **\.venv
 **\.vscode
 **\.coveragerc
@@ -13,7 +13,6 @@
 **\__pycache__
 **\htmlcov
 **\issue.md
-**\tests
 **\misc
 **\.github
 # flyctl launch added from .pytest_cache\.gitignore
