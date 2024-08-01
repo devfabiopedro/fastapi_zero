@@ -16,12 +16,10 @@ from fastapi_zero.schemas import (
 )
 from fastapi_zero.security import get_current_user
 
-router = APIRouter()
+router = APIRouter(prefix='/todos', tags=['To-Dos'])
 
 T_Session = Annotated[Session, Depends(get_session)]
 T_CurrentUser = Annotated[User, Depends(get_current_user)]
-
-router = APIRouter(prefix='/todos', tags=['To-Dos'])
 
 
 @router.post('/', response_model=TodoPublic)
